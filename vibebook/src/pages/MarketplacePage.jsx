@@ -1,24 +1,46 @@
 export default function MarketplacePage() {
-  const items = Array.from({ length: 10 }).map((_, i) => ({
-    id: i + 1,
-    title: `Item ${i + 1}`,
-    price: (Math.floor(Math.random() * 90) + 10) * 10,
-    image: `https://picsum.photos/seed/m${i}/400/300`,
-  }))
+  const categories = ['All', 'Electronics', 'Vehicles', 'Clothing', 'Home & Garden', 'Toys & Games'];
+  const products = [
+    { id: 1, name: 'Vintage Camera', price: '$150', image: 'https://picsum.photos/seed/p1/400/300', location: 'New York, NY' },
+    { id: 2, name: 'Mountain Bike', price: '$450', image: 'https://picsum.photos/seed/p2/400/300', location: 'Denver, CO' },
+    { id: 3, name: 'Leather Jacket', price: '$80', image: 'https://picsum.photos/seed/p3/400/300', location: 'Los Angeles, CA' },
+    { id: 4, name: 'Modern Sofa', price: '$700', image: 'https://picsum.photos/seed/p4/400/300', location: 'Chicago, IL' },
+    { id: 5, name: 'Gaming Console', price: '$300', image: 'https://picsum.photos/seed/p5/400/300', location: 'Miami, FL' },
+    { id: 6, name: 'Acoustic Guitar', price: '$220', image: 'https://picsum.photos/seed/p6/400/300', location: 'Austin, TX' },
+  ];
+
   return (
-    <div>
-      <h2 className="mb-4 text-xl font-semibold text-red-500">Marketplace</h2>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {items.map((it) => (
-          <div key={it.id} className="rounded-lg bg-black/60 p-3 shadow border border-red-700">
-            <img src={it.image} alt="" className="h-40 w-full rounded object-cover" />
-            <h3 className="mt-2 font-medium text-white">{it.title}</h3>
-            <p className="text-sm text-red-300">${it.price}</p>
-          </div>
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-3xl font-bold text-white">Marketplace</h2>
+        <button className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Create new listing</button>
+      </div>
+      
+      <div className="flex space-x-2 overflow-x-auto pb-2">
+        {categories.map(cat => (
+          <button key={cat} className="px-4 py-2 text-sm font-semibold rounded-full bg-gray-700 text-white hover:bg-red-600 whitespace-nowrap">
+            {cat}
+          </button>
         ))}
       </div>
+
+      <div>
+        <h3 className="text-xl font-bold text-white mb-4">Today's picks</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map((p) => (
+            <div key={p.id} className="rounded-lg bg-gray-800 shadow overflow-hidden">
+              <img src={p.image} alt={p.name} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <p className="text-lg font-bold text-white">{p.price}</p>
+                <p className="text-md text-gray-200">{p.name}</p>
+                <p className="text-sm text-gray-400 mt-1">{p.location}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 

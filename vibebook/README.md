@@ -1,4 +1,4 @@
-# VibeBook
+# Facebook
 
 A Facebook-like responsive frontend built with React, React Router, Vite, and TailwindCSS. Uses only client-side navigation and dummy data.
 

@@ -1,70 +1,63 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function LoginPage() {
-  const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const vantaRef = useRef(null)
-  const vantaEffectRef = useRef(null)
-
-  useEffect(() => {
-    let cleanup
-    ;(async () => {
-      const THREE = await import('three')
-      const VANTA = await import('vanta/dist/vanta.waves.min')
-      vantaEffectRef.current = VANTA.default({
-        THREE: THREE,
-        el: vantaRef.current,
-        color: 0xef4444,
-        shininess: 50,
-        waveHeight: 20,
-        waveSpeed: 0.8,
-        zoom: 0.85
-      })
-      cleanup = () => vantaEffectRef.current && vantaEffectRef.current.destroy()
-    })()
-    return () => cleanup && cleanup()
-  }, [])
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function onSubmit(e) {
-    e.preventDefault()
-    navigate('/home')
+    e.preventDefault();
+    navigate('/home');
   }
 
   return (
-    <div ref={vantaRef} className="relative min-h-screen">
-      <div className="absolute inset-0 bg-black/70" />
-      <div className="relative z-10 flex min-h-screen items-center justify-center p-4">
-        <div className="w-full max-w-md rounded-lg bg-black/80 p-6 shadow-lg border border-red-600">
-          <h1 className="mb-6 text-center text-3xl font-extrabold glow-title">FACEBOOK</h1>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="w-full rounded border border-red-700 bg-black/60 px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
-              required
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="w-full rounded border border-red-700 bg-black/60 px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
-              required
-            />
-            <button type="submit" className="w-full rounded bg-red-600 px-4 py-2 font-medium text-white hover:bg-red-700 transition transform hover:scale-[1.02]">Login</button>
-          </form>
-          <p className="mt-4 text-center text-sm text-gray-300">
-            Don't have an account?{' '}
-            <Link to="/signup" className="text-red-400 hover:underline">Sign up</Link>
-          </p>
+    <div
+      className="relative min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/assets/carimages.jpg')" }}
+    >
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="relative z-10 flex min-h-screen items-center justify-center p-4 lg:justify-start lg:p-20">
+        <div className="w-full max-w-md lg:w-1/2 lg:max-w-none lg:pr-16">
+          <h1 className="text-5xl font-bold text-red-600 glow-title mb-4">Facebook</h1>
+          <p className="text-2xl text-white">Facebook helps you connect and share with the people in your life.</p>
+        </div>
+        <div className="hidden lg:flex w-full max-w-md rounded-lg bg-black/80 p-6 shadow-lg border border-red-600 lg:w-1/2">
+          <div className="w-full">
+            <form onSubmit={onSubmit} className="space-y-4">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email address or phone number"
+                className="w-full rounded border border-red-700 bg-black/60 px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
+                required
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full rounded border border-red-700 bg-black/60 px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
+                required
+              />
+              <button type="submit" className="w-full rounded bg-red-600 px-4 py-3 font-bold text-white hover:bg-red-700 transition transform hover:scale-[1.02]">Log In</button>
+            </form>
+            <div className="text-center my-4">
+              <Link to="#" className="text-sm text-red-400 hover:underline">Forgotten password?</Link>
+            </div>
+            <hr className="border-gray-600" />
+            <div className="mt-6 text-center">
+              <Link to="/signup" className="w-full inline-block rounded bg-green-600 px-6 py-3 font-bold text-white hover:bg-green-700 transition transform hover:scale-[1.02]">Create new account</Link>
+            </div>
+            <p className="mt-6 text-center text-sm text-gray-300">
+              <Link to="#" className="font-bold hover:underline">Create a Page</Link> for a celebrity, brand or business.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 
