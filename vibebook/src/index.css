@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App base styles */
+html, body, #root {
+  height: 100%;
+}
+
+.glow-title {
+  color: #ef4444; /* red-500 */
+  text-shadow: 0 0 8px rgba(239,68,68,0.8), 0 0 16px rgba(239,68,68,0.6), 0 0 32px rgba(239,68,68,0.4);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 8px rgba(239,68,68,0.8), 0 0 16px rgba(239,68,68,0.6), 0 0 32px rgba(239,68,68,0.4); }
+  50% { text-shadow: 0 0 16px rgba(239,68,68,1), 0 0 32px rgba(239,68,68,0.9), 0 0 64px rgba(239,68,68,0.7); }
+}
+
+.glow-brand {
+  color: #ef4444;
+  text-shadow: 0 0 6px rgba(239,68,68,0.8);
+}
+
+
